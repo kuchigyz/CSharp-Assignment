@@ -1,0 +1,14 @@
+using System;
+
+class MainClass {
+  public static void Main (string[] args) {
+    Console.Write("Enter the name of the product: ");
+    string name = Console.ReadLine();
+    Console.Write("Enter the price of the product: ");
+    int price = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Enter the quantity of the product: ");
+    int quantity = Convert.ToInt32(Console.ReadLine());
+    int totalPrice = price * quantity;
+    Console.WriteLine("The total price for {0} {1} is {2}£", quantity, name, totalPrice);
+  }
+}
