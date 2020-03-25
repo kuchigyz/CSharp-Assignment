@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class MainClass {
+  public static List<int> InputToList(){
+
+    var intList = new List<int>();
+    string sUserInput = "";
+    var sList = new List<string>();
+    bool validInput = true;
+
+    do{
+        validInput = true;
+        Console.WriteLine("Input a space separated list of integers");
+        sUserInput = Console.ReadLine();
+        sList = sUserInput.Trim().Split(' ').ToList();
+
+        try{
+            foreach (var item in sList) {intList.Add(int.Parse(item));}
+        }
+        catch (Exception)
+        {
+            validInput = false;
+            Console.WriteLine("Error. Enter Valid input.");
+        }
+    } while (validInput == false);
+    //Console.WriteLine(string.Join(", ", intList));
+    return intList;
+  }
+
+  public static void Main (string[] args) {
+
+    List<int> oldList = InputToList();
+    List<int> newList = new List<int>();
+    Console.WriteLine(string.Join(", ", oldList));
+
+    if (oldList.Count() % 2 == 1) {
+      oldList.Add(1);
+    }
+
+    for(int i = 0; i < oldList.Count(); i += 2){
+      newList.Add(oldList[i] * oldList[i+1]);
+    }
+    
+    Console.WriteLine(string.Join(", ", newList));
+
+  }
+}
