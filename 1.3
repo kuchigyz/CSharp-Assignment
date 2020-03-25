@@ -1,0 +1,63 @@
+using System;
+
+class MainClass {
+  public static void Main (string[] args) {
+  int money = 100;
+  int bet = 1;
+  Console.WriteLine("Welcome to TSD Slot Machines :)");
+  Console.WriteLine("Type \"bet \" followed by a number to change your bet.");
+  Console.WriteLine("Type \"quit\" to exit the application.");
+  Console.WriteLine("Press enter to play.");
+  
+    while (true){
+      try{
+      Console.Write("Make a choice: ");
+      var choice = Console.ReadLine();
+      if (choice[0] == 'q'){
+        Console.WriteLine("You decided to quit the game and got £{0}", money);  
+        break;
+      }
+      else if (choice[0] == 'b'){
+        bet = Convert.ToInt32(choice.Substring(3));
+        Console.WriteLine("You now bet £{0} per spin.", bet);
+        continue; 
+      }
+      }
+      catch{
+      }
+   
+     
+      Random rnd = new Random();
+      int slot1 = rnd.Next(1, 10);
+      int slot2 = rnd.Next(1, 10);
+      int slot3 = rnd.Next(1, 10);
+      money -= bet;
+
+      Console.WriteLine("Spinning. You have £{0}", money);
+      Console.WriteLine("{0} {1} {2}", slot1, slot2, slot3);
+
+      if (((slot1 == slot2) & (slot1 < 9)) | ((slot2 == slot3) & (slot2 < 9)) | ((slot1 == slot3) & (slot3 < 9))) {
+      money += 2 * bet;
+      Console.WriteLine("You got a pair and won £{0}. You have £{1}", 2 * bet, money);
+      }
+      else if (((slot1 == slot2) & (slot2 == slot3)) & (slot1 < 9)){
+      money += 5 * bet;
+      Console.WriteLine("You got a triple and won £{0}. You have £{1}", 5 * bet, money);
+      }
+      else if (((slot1 == slot2) & (slot1 == 9)) | ((slot2 == slot3) & (slot2 == 9)) | ((slot1 == slot3) & (slot3 == 9))) {
+      money += 15 * bet;
+      Console.WriteLine("You got a pair of nines and won £{0}. You have £{1}", 15 * bet, money);
+      }
+      else if ((slot1 == slot2) & (slot2 == slot3) & (slot1 == 9)){
+      money += 50 * bet;
+      Console.WriteLine("JACKPOT!!! You won {0}. You have £{1}", 50 * bet, money);
+      }
+      else if(money <= 0){
+        Console.WriteLine("Sorry, you have run out of money.");
+        Console.WriteLine("Please put more money in the machine to continue.");
+        Console.WriteLine("Terminating. Good Bye.");
+        break;
+      }
+    }
+  }
+}
