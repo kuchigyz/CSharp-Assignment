@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace KuchiGyz
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rnd = new Random();
+            int score = 0;
+            Console.WriteLine("Press enter to Spin. Type \"quit\" to quit the game");
+            while (true)
+            {
+                int a = rnd.Next(0, 10);
+                int b = rnd.Next(0, 10);
+                int c = rnd.Next(0, 10);
+
+                
+                string input = Console.ReadLine();
+                input.ToLower();
+
+                if (input == "quit")
+                {
+                    break;
+                }
+                Console.WriteLine("{0}, {1}, {2}", a, b, c);
+                if (a == b && b == c && a == 9)
+                {
+                    score += 2000;
+                    Console.WriteLine("You win 2000 points.\nYour new score is {0}", score);
+                }
+                else if ((a == b && a == 9) || (b == c && b == 9) || (a == c && a == 9))
+                {
+                    score += 200;
+                    Console.WriteLine("You win 200 points.\nYour new score is {0}", score);
+                }
+                else if (a == b && b == c)
+                {
+                    score += 15;
+                    Console.WriteLine("You win 15 points.\nYour new score is {0}", score);
+                }
+                else if (a == b || b == c || a == c)
+                {
+                    score += 5;
+                    Console.WriteLine("You win 5 points.\nYour new score is {0}", score);
+                }
+                else
+                {
+                    Console.WriteLine("LOSER !!!");
+                }
+            }
+
+
+        }
+    }
+}
