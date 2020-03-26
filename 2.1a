@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace KuchiGyz
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var oldList = new List<int>();
+            var newList = new List<int>();
+
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter a number or press enter to continue: ");
+                    oldList.Add(int.Parse(Console.ReadLine()));
+                }
+                catch (Exception)
+                {
+                    break;
+                    throw;
+                }
+            }
+            if (oldList.Count % 2 == 1)
+            {
+                oldList.Add(1);
+            }
+            for (int i = 0; i < oldList.Count; i += 2)
+            {
+                newList.Add(oldList[i] * oldList[i+1]);
+            }
+            Console.WriteLine("The new list is: " + string.Join(", ", newList));
+
+        }
+    }
+}
